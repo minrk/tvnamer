@@ -519,4 +519,5 @@ class Renamer(object):
 
         self.filename = new_fullpath
 
-findShowByDate(show)
+def findShowByDate(show):
+    pass

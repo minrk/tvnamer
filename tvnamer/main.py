@@ -34,11 +34,19 @@ def processFile(tvdb_instance, episode):
     try:
         correctedSeriesName, epName = getEpisodeName(tvdb_instance, episode)
     except (DataRetrievalError, ShowNotFound), errormsg:
-        warn(errormsg)
+        if Config['giveup_on_error']:
+            warn("Skipping %s because: %s"%(episode.fullfilename,errormsg))
+            return
+        else:
+            warn(errormsg)
     except (SeasonNotFound, EpisodeNotFound, EpisodeNameNotFound), errormsg:
         # Show was found, so use corrected series name
-        warn(errormsg)
-        episode.seriesname = correctedSeriesName
+        if Config['giveup_on_error']:
+            warn("Skipping %s because: %s"%(episode.fullfilename,errormsg))
+            return
+        else:
+            warn(errormsg)
+            episode.seriesname = correctedSeriesName
     else:
         episode.seriesname = correctedSeriesName
         episode.episodename = epName

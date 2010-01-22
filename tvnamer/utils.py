@@ -518,3 +518,5 @@ class Renamer(object):
                 delete_file(self.filename)
 
         self.filename = new_fullpath
+
+findShowByDate(show)

@@ -136,6 +136,8 @@ class _ConfigManager(dict):
             'multiep_join_name_with': ', ',
             'language': 'en',
             'search_all_languages': True,
+            'use_dvd_order': False,
+            'giveup_on_error': False,
 
             'episode_patterns': [
                 # [group] Show - 01-02 [Etc]
